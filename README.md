@@ -1,20 +1,20 @@
-# ![Brute-Horse](./assets/BruteHorse.jpeg) Brute-Horse
+# <img src="./assets/BruteHorse.jpeg" width="50px"> Brute-Horse
 An automation pentesting interface that allows the disclosure of vulnerabilities in systems &amp; even exploiting them
 
 ## Expected Functionalities after project end
 ### For user-input IP address
-1. Port Scanning `:male_detective:`
+1. Port Scanning 🕵️‍♂️
 - Applying port scanning using nmap & reporting open ports and vulnerabilites
-2. Exploiting vulnerabilities `:unlock:`
+1. Exploiting vulnerabilities 🔓 
   1. anonymous FTP login 
   2. anonymous SMB login
   3. Bruteforce attack on open ports as SSH, SMB, FTP, etc...
 ### For web pages
-1. Information Gathering `:clipboard:`
+1. Information Gathering 📋
    1. Directory Enumeration
    2. Banner Grapping
-2. Scanning for vulnerabilites `:mag_right:`
-3. Exploitation `:fire:`
+2. Scanning for vulnerabilites 🔎
+3. Exploitation 🔥
    1. SQLI for found forms & search bars
 
 ## Contributers
