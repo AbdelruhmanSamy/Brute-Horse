@@ -1,4 +1,4 @@
-# <img src="./assets/BruteHorse.jpeg" width="50px"> Brute-Horse
+# <img src="./assets/BruteHorse.jpeg" width="150px"> Brute-Horse
 An automation pentesting interface that allows the disclosure of vulnerabilities in systems &amp; even exploiting them
 
 ## Expected Functionalities after project end
