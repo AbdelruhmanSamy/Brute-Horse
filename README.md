@@ -9,7 +9,7 @@ An automation pentesting interface that allows the disclosure of vulnerabilities
 ### For user-input IP address
 1. Port Scanning 🕵️‍♂️
 - Applying port scanning using nmap & reporting open ports and vulnerabilites
-1. Exploiting vulnerabilities 🔓 
+2. Exploiting vulnerabilities 🔓 
   1. anonymous FTP login 
   2. anonymous SMB login
   3. Bruteforce attack on open ports as SSH, SMB, FTP, etc...
