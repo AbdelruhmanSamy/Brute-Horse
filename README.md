@@ -1,11 +1,9 @@
 # Brute-Horse
+An automation pentesting interface that allows the disclosure of vulnerabilities in systems &amp; even exploiting them
 
 <p align="center">
 <img src="./assets/BruteHorse.jpeg" width="400px">
 </p> 
-
-
-An automation pentesting interface that allows the disclosure of vulnerabilities in systems &amp; even exploiting them
 
 ## Expected Functionalities after project end
 ### For user-input IP address
