@@ -30,4 +30,4 @@ else
 fi
 
 # Clean up
-rm ftp.txt
+rm $TEXT_OUTPUT

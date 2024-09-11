@@ -1,0 +1,7 @@
+Connected to 10.10.122.59.
+220 (vsFTPd 3.0.3)
+331 Please specify the password.
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+221 Goodbye.
