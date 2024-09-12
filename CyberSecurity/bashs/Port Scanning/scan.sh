@@ -24,25 +24,51 @@ mkdir -p $OUTPUT_DIR
 echo "[*] Running full port scan on $IP_ADDRESS..."
 nmap "-s$SCAN_TYPE" -sV "-T$TIME_SPEED" "-p $START_PORT-$END_PORT" -v -A $IP_ADDRESS -oN "$TEXT_OUTPUT" -oX "$XML_OUTPUT"
 
-# Step 2: Parse XML file with Node.js script
-echo "[*] Parsing XML file with Node.js script..."
-node $NODE_SCRIPT
+# Step 2: Parse XML file with Node.js script to check open ports (-c)
+echo "[*] Checking if ports 80 or 443 are open..."
+OPEN_PORTS=$(node $NODE_SCRIPT -c)  # Pass '-c' for checking open ports
 
-# Step 3: Running Searchsploit for found services and versions
+if [[ "$OPEN_PORTS" == *"80"* || "$OPEN_PORTS" == *"443"* ]]; then
+    # Step 3: Running gobuster if web ports are open
+    echo "[*] Port 80 or 443 is open, running gobuster..."
+    gobuster dir -u http://$IP_ADDRESS -w /usr/share/wordlists/dirb/common.txt -o "$OUTPUT_DIR/gobuster_results.txt"
+    echo "[*] Adding gobuster results to the report..."
+    cat "$OUTPUT_DIR/gobuster_results.txt" >> "$REPORT_FILE"
+else
+    echo "[*] No web server detected (ports 80 or 443 closed). Skipping gobuster."
+fi
+
+# Step 4: Parse XML file with Node.js script to extract service details (-t)
+echo "[*] Extracting service details from open ports..."
+node $NODE_SCRIPT -t  # Pass '-t' for extracting service details
+
+# Step 5: Running Searchsploit for found services and versions
 echo "[*] Searching for CVEs with Searchsploit..."
 
-# Run Searchsploit for each line in output.txt
 while IFS= read -r line; do
-    echo "[*] Searching for CVEs for $line..."
-    searchsploit "$line" -w >> "$REPORT_FILE"
+    # Split the product and version
+    serviceProduct=$(echo "$line" | awk '{print $1}')
+    serviceVersion=$(echo "$line" | awk '{print $2}')
+
+    # Extract major, minor, and patch versions from serviceVersion
+    major=$(echo "$serviceVersion" | cut -d '.' -f 1)
+    minor=$(echo "$serviceVersion" | cut -d '.' -f 2)
+    patch=$(echo "$serviceVersion" | cut -d '.' -f 3)
+
+    echo "[*] Searching for CVEs for $serviceProduct version >= $serviceVersion..."
+
+    # Run searchsploit for the service and filter by version (greater or equal)
+    searchsploit "$serviceProduct" -w | awk -v maj="$major" -v min="$minor" -v pat="$patch" '
+    {
+        # Extract version from the results
+        match($0, /[0-9]+\.[0-9]+\.[0-9]+/, version)
+        split(version[0], v, ".")
+
+        # Compare versions and print only if the result version >= service version
+        if (v[1] > maj || (v[1] == maj && v[2] > min) || (v[1] == maj && v[2] == min && v[3] >= pat)) {
+            print $0
+        }
+    }' >> "$REPORT_FILE"
 done < "$OUTPUT_DIR/output.txt"
-
-# Step 4: Running gobuster to discover directories on the server
-echo "[*] Running gobuster on $IP_ADDRESS..."
-gobuster dir -u http://$IP_ADDRESS -w /usr/share/wordlists/dirb/common.txt -o "$OUTPUT_DIR/gobuster_results.txt"
-
-# Step 5: Combine gobuster results with the report
-echo "[*] Adding gobuster results to the report..."
-cat "$OUTPUT_DIR/gobuster_results.txt" >> "$REPORT_FILE"
 
 echo "[*] Scan complete. Results saved to $REPORT_FILE"
