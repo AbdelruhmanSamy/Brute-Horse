@@ -7,23 +7,37 @@ YELLOW='\033[33m'
 CYAN='\033[36m'
 RESET='\033[0m'
 
+# Define the temporary files for SQLmap and terminal output
+sqlmap_output_file="sqlmap_output.log"
+terminal_output_file="terminal_output.log"
+
+# Ensure the temporary files are empty at the start
+> "$sqlmap_output_file"
+> "$terminal_output_file"
+
+# Function to echo messages to both terminal and temporary file
+log() {
+    local message="$1"
+    echo -e "$message" | tee -a "$terminal_output_file"
+}
+
 # Check if sqlmap is installed
 if ! command -v sqlmap &> /dev/null; then
-    echo -e "${RED}sqlmap could not be found. Please install it before running this script.${RESET}"
+    log "${RED}sqlmap could not be found. Please install it before running this script.${RESET}"
     exit 1
 fi
 
 # Function to show usage
 usage() {
-    echo -e "${CYAN}Usage: $0 -u URL [-p PARAM] [-D DATABASE] [-T TABLE] [-C COLUMN] [OPTIONS]${RESET}"
-    echo ""
-    echo "Options:"
-    echo "  -u URL        Target URL"
-    echo "  -p PARAM      Parameter to test for injection (optional)"
-    echo "  -D DATABASE   Specify database name (optional)"
-    echo "  -T TABLE      Specify table name (optional)"
-    echo "  -C COLUMN     Specify column name (optional)"
-    echo "  --options     Additional sqlmap options (optional)"
+    log "${CYAN}Usage: $0 -u URL [-p PARAM] [-D DATABASE] [-T TABLE] [-C COLUMN] [OPTIONS]${RESET}"
+    log ""
+    log "Options:"
+    log "  -u URL        Target URL"
+    log "  -p PARAM      Parameter to test for injection (optional)"
+    log "  -D DATABASE   Specify database name (optional)"
+    log "  -T TABLE      Specify table name (optional)"
+    log "  -C COLUMN     Specify column name (optional)"
+    log "  --options     Additional sqlmap options (optional)"
     exit 1
 }
 
@@ -36,19 +50,16 @@ while [[ "$#" -gt 0 ]]; do
         -T|--table) table="$2"; shift ;;
         -C|--column) column="$2"; shift ;;
         --options) options="$2"; shift ;;
-        *) echo -e "${RED}Unknown parameter passed: $1${RESET}"; usage ;;
+        *) log "${RED}Unknown parameter passed: $1${RESET}"; usage ;;
     esac
     shift
 done
 
 # Check if URL is provided
 if [ -z "$url" ]; then
-    echo -e "${RED}Target URL is required.${RESET}"
+    log "${RED}Target URL is required.${RESET}"
     usage
 fi
-
-# Define the output file in the current directory
-output_file="sqlmap_output.log"
 
 # Build the sqlmap command
 sqlmap_cmd="sqlmap -u \"$url\" --batch --dbs"
@@ -74,61 +85,63 @@ if [ ! -z "$options" ]; then
     sqlmap_cmd+=" $options"
 fi
 
-# Run the sqlmap command and save the output to the specified file
-echo -e "${GREEN}Running sqlmap and saving output to $output_file...${RESET}"
-eval $sqlmap_cmd > "$output_file" 2>&1
+# Run the sqlmap command and save the output to the SQLmap output file
+log "${GREEN}Running sqlmap...${RESET}"
+eval $sqlmap_cmd > "$sqlmap_output_file" 2>&1
 
-# Check for the database type in the output
-db_type=$(grep -oP 'the back-end DBMS is \K\w+' "$output_file")
+# Check for the database type in the SQLmap output
+db_type=$(grep -oP 'the back-end DBMS is \K\w+' "$sqlmap_output_file")
 
 # Display the database type if found
 if [ ! -z "$db_type" ]; then
-    echo -e "${CYAN}The back-end DBMS is ${YELLOW}$db_type${RESET}"
+    log "${CYAN}The back-end DBMS is ${YELLOW}$db_type${RESET}"
 else
-    echo -e "${RED}Could not detect the database type.${RESET}"
+    log "${RED}Could not detect the database type.${RESET}"
 fi
 
-# Check if the output file contains vulnerabilities and display them
-echo -e "${YELLOW}Checking for vulnerabilities...${RESET}"
+# Check if the SQLmap output file contains vulnerabilities and display them
+log "${YELLOW}Checking for vulnerabilities...${RESET}"
 
-# Extract the vulnerabilities from the output file
-vulnerabilities=$(awk '/Parameter: /,/---/' "$output_file")
+# Extract the vulnerabilities from the SQLmap output file
+vulnerabilities=$(awk '/Parameter: /,/---/' "$sqlmap_output_file")
 
-# Extract the found databases from the output file
-databases=$(awk '/available databases/,/^\s*$/' "$output_file")
+# Extract the found databases from the SQLmap output file
+databases=$(awk '/available databases/,/^\s*$/' "$sqlmap_output_file")
 
-# Extract dumped databases from the output file
-dumped_databases=$(awk '/Database: /, /^\s*$/' "$output_file")
+# Extract dumped databases from the SQLmap output file
+dumped_databases=$(awk '/Database: /, /^\s*$/' "$sqlmap_output_file")
 
 if [ ! -z "$vulnerabilities" ]; then
-    echo -e "${CYAN}=== Vulnerabilities Found ===${RESET}"
-    echo "$vulnerabilities"
+    log "${CYAN}=== Vulnerabilities Found ===${RESET}"
+    log "$vulnerabilities"
 else
-    echo -e "${GREEN}No vulnerabilities found.${RESET}"
+    log "${GREEN}No vulnerabilities found.${RESET}"
 fi
 
 # Output the extracted information
-if [ ! -z "$databases" ];then
-    echo -e "${CYAN}=== Extracted Databases ===${RESET}"
-    echo -e "$databases"
+if [ ! -z "$databases" ]; then
+    log "${CYAN}=== Extracted Databases ===${RESET}"
+    log "$databases"
 else
-    echo -e "${RED}No databases found.${RESET}"
+    log "${RED}No databases found.${RESET}"
 fi
 
-if [ ! -z "$tables"]; then
-    echo -e "${CYAN}=== Extracted Tables ===${RESET}"
-    echo -e "$tables"
+if [ ! -z "$tables" ]; then
+    log "${CYAN}=== Extracted Tables ===${RESET}"
+    log "$tables"
 fi
 
 if [[ "$options" == *dump* ]]; then
-    if [ ! -x "$dumped_databases" ]; then
-        echo -e "${CYAN}=== Extracted Dumped Data ===${RESET}"
-        echo -e "$dumped_databases"
+    if [ ! -z "$dumped_databases" ]; then
+        log "${CYAN}=== Extracted Dumped Data ===${RESET}"
+        log "$dumped_databases"
     else
-        echo -e "${RED}failed to dump database${RESET}"
+        log "${RED}Failed to dump database${RESET}"
     fi
 fi
 
-
 # Notify the user that the output has been saved
-echo -e "${CYAN}SQLmap output saved to $output_file${RESET}"
+log "${CYAN}Terminal output saved to $terminal_output_file${RESET}"
+
+# Move the terminal output to the final output file
+mv "$terminal_output_file" "$final_output_file"
