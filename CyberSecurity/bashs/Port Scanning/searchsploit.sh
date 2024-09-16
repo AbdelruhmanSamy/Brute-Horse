@@ -11,6 +11,6 @@ REPORT_FILE="$OUTPUT_DIR/scan_report.txt"
 while IFS= read -r service; do
     echo "[*] Searching for vulnerabilities in $service..." | tee -a "$REPORT_FILE"
     searchsploit "$service" -w >> "$SEARCHSPLIT_OUTPUT"
-    echo "Searchsploit results for $service:" >> "$REPORT_FILE"
-    cat "$SEARCHSPLIT_OUTPUT" >> "$REPORT_FILE"
+    # echo "Searchsploit results for $service:" >> "$REPORT_FILE"
 done < "$INPUT_FILE"
+cat "$SEARCHSPLIT_OUTPUT" >> "$REPORT_FILE"
