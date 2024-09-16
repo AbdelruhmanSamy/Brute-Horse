@@ -1,23 +1,16 @@
 #!/bin/bash
+#searchsploit.sh
 
-# Define variables
 OUTPUT_DIR="scan_results"
 INPUT_FILE="$OUTPUT_DIR/servicesOutput.txt"
 SEARCHSPLIT_OUTPUT="$OUTPUT_DIR/search_sploit_output.txt"
+REPORT_FILE="$OUTPUT_DIR/scan_report.txt"
 
-# Ensure output file is empty before starting
 > "$SEARCHSPLIT_OUTPUT"
 
-echo "[*] Searching for CVEs with Searchsploit..."
-
-# Read each line from the input file and run searchsploit
-while IFS= read -r line; do
-    # Check if the line is not empty
-    if [ -n "$line" ]; then
-        echo "Searching for: $line" >> "$SEARCHSPLIT_OUTPUT"
-        searchsploit "$line" -w >> "$SEARCHSPLIT_OUTPUT"
-        echo "" >> "$SEARCHSPLIT_OUTPUT"  # Add a blank line between results for readability
-    fi
+while IFS= read -r service; do
+    echo "[*] Searching for vulnerabilities in $service..." | tee -a "$REPORT_FILE"
+    searchsploit "$service" -w >> "$SEARCHSPLIT_OUTPUT"
+    echo "Searchsploit results for $service:" >> "$REPORT_FILE"
+    cat "$SEARCHSPLIT_OUTPUT" >> "$REPORT_FILE"
 done < "$INPUT_FILE"
-
-echo "[*] Scan complete. Results saved to $SEARCHSPLIT_OUTPUT"

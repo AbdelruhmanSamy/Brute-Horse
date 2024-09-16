@@ -28,10 +28,6 @@ function checkOpenPorts(xmlData) {
     });
 
     // If no matching ports are found, indicate that in the output
-    if (!output) {
-        output = 'No open HTTP-related ports found.\n';
-    }
-
     // Write the output to a file
     fs.writeFile(outputFile, output, err => {
         if (err) {
@@ -53,7 +49,7 @@ function extractServiceDetails(xmlData) {
         if (port.state[0].$.state === 'open') {
             const service = port.service[0].$;
             const serviceProduct = service.product.split(" ")[0] || 'N/A';
-            const serviceVersion = service.version || 'N/A';
+            const serviceVersion = service.version.split(" ")[0] || 'N/A';
 
             output += `${serviceProduct} ${serviceVersion}\n`;
         }
