@@ -6,30 +6,42 @@ const mode = process.argv[2];  // -c for checking open ports, -t for extracting 
 
 // File paths
 const xmlFile = './scan_results/nmap_scan.xml';  // Replace with your XML file path
-const outputFile = './scan_results/output.txt';
+const outputFile = mode === "-t" ? './scan_results/servicesOutput.txt' : "./scan_results/portsOutput.txt";
 
 // Function to check if ports 80 or 443 are open
+// Function to check if ports with service names containing "http" are open
 function checkOpenPorts(xmlData) {
     const host = xmlData.nmaprun.host[0];
     const ports = host.ports[0].port;
-    let openPorts = [];
+    let output = '';  // String to store the output for the file
 
     ports.forEach(port => {
         const portNumber = port.$.portid;
         const state = port.state[0].$.state;
+        const serviceName = port.service && port.service[0].$.name ? port.service[0].$.name.toLowerCase() : '';
+        const serviceProduct = port.service && port.service[0].$.product ? port.service[0].$.product.toLowerCase() : '';
 
-        if (state === 'open' && (portNumber === '80' || portNumber === '443')) {
-            openPorts.push(portNumber);
+        // Check if the port is open and if the service contains "http" in its name or product
+        if (state === 'open' && (serviceName.includes('http') || serviceProduct.includes('http'))) {
+            output += `${portNumber}\n`;
         }
     });
 
-    // Output the open ports (80 or 443) to the console
-    if (openPorts.length > 0) {
-        console.log(openPorts.join(' '));
-    } else {
-        console.log('none');
+    // If no matching ports are found, indicate that in the output
+    if (!output) {
+        output = 'No open HTTP-related ports found.\n';
     }
+
+    // Write the output to a file
+    fs.writeFile(outputFile, output, err => {
+        if (err) {
+            console.error('Error writing to output file:', err);
+        } else {
+            console.log('HTTP-related open ports written to output file.');
+        }
+    });
 }
+
 
 // Function to extract service details of open ports
 function extractServiceDetails(xmlData) {
