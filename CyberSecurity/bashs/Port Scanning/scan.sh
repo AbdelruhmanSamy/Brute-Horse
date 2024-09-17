@@ -28,23 +28,23 @@ echo "[*] Running Nmap scan on $IP_ADDRESS..." | tee -a "$REPORT_FILE"
 sudo ./nmap.sh $IP_ADDRESS $TIME_SPEED $SCAN_TYPE $START_PORT $END_PORT | tee -a "$REPORT_FILE"
 
 # Step 2: Check open web ports
-echo "[*] Checking for open ports..." | tee -a "$REPORT_FILE"
+echo "[*] Checking for open ports..." 
 node xml_service.js -c 
 
 # Step 3: Run Gobuster for open web ports
-sudo ./gobuster.sh $IP_ADDRESS | tee -a "$REPORT_FILE"
+sudo ./gobuster.sh $IP_ADDRESS 
 
 # Step 4: Extract service details
-echo "[*] Extracting service details..." | tee -a "$REPORT_FILE"
+echo "[*] Extracting service details..." 
 node xml_service.js -t 
 
 # Step 5: Searchsploit for services
-echo "[*] Searching vulnerabilities with Searchsploit..." | tee -a "$REPORT_FILE"
-sudo ./searchsploit.sh | tee -a "$REPORT_FILE"
+echo "[*] Searching vulnerabilities with Searchsploit..." 
+sudo ./searchsploit.sh 
 
 # Step 6: NVD DB vulnerability search
-echo "[*] Checking NVD Database for vulnerabilities..." | tee -a "$REPORT_FILE"
-sudo ./nvd.sh | tee -a "$REPORT_FILE"
+echo "[*] Checking NVD Database for vulnerabilities..." 
+sudo ./nvd.sh 
 
 echo "### Report Complete ###" >> "$REPORT_FILE"
 echo "Results saved in $REPORT_FILE"
