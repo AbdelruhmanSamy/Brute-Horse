@@ -1,6 +1,7 @@
 #!/bin/bash
 #scan.sh -> the main script
 
+
 if [ "$#" -lt 2 ]; then
     echo "Usage: $0 <IP_ADDRESS> [TIME_SPEED] [SCAN_TYPE] [START_PORT] [END_PORT]"
     exit 1
@@ -48,3 +49,7 @@ sudo ./nvd.sh
 
 echo "### Report Complete ###" >> "$REPORT_FILE"
 echo "Results saved in $REPORT_FILE"
+# Step 7: Cleaning Report from Nonalphnumeric characters.
+sudo ./clean_report.sh
+# Step 8 : Creating a PDF file for the scan_report
+sudo python textToPdf.py
