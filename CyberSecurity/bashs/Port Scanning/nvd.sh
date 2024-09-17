@@ -54,5 +54,5 @@ while IFS= read -r service; do
 
         echo "" >> "$NVD_OUTPUT"  # Add a blank line between each service's results
     fi
-cat $NVD_OUTPUT >> $REPORT_FILE   
 done < "$INPUT_FILE"
+cat $NVD_OUTPUT >> $REPORT_FILE   
