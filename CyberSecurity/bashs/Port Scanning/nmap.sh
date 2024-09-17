@@ -10,7 +10,7 @@ OUTPUT_DIR="scan_results"
 XML_OUTPUT="$OUTPUT_DIR/nmap_scan.xml"
 
 echo "Running full port scan on $IP_ADDRESS, Ports $START_PORT-$END_PORT..." | tee -a "$REPORT_FILE"
-nmap "-s$SCAN_TYPE" -sV "-T$TIME_SPEED" "-p$START_PORT-$END_PORT" -v -A $IP_ADDRESS -oX "$XML_OUTPUT"
+nmap "-s$SCAN_TYPE" -sV "-T$TIME_SPEED" "-p$START_PORT-$END_PORT"  $IP_ADDRESS -oX "$XML_OUTPUT"
 
 # Append summary to report
 echo "Nmap scan complete." | tee -a "$REPORT_FILE"

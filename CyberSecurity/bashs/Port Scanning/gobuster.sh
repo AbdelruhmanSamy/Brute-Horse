@@ -16,7 +16,7 @@ fi
 while IFS= read -r port; do
     # echo "[*] Running Gobuster on port $port..." | tee -a "$REPORT_FILE"
     gobuster_output_file="$OUTPUT_DIR/port${port}_output.txt"
-    gobuster dir -u http://$IP_ADDRESS:$port -w /usr/share/wordlists/dirb/common.txt -o $gobuster_output_file
+    gobuster dir -u http://$IP_ADDRESS:$port -w /usr/share/wordlists/dirb/common.txt -o "$gobuster_output_file"
     
     # Append results to report
     echo "Gobuster Results for port $port:" >> "$REPORT_FILE"
