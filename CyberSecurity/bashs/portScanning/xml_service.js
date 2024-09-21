@@ -48,8 +48,8 @@ function extractServiceDetails(xmlData) {
     ports.forEach(port => {
         if (port.state[0].$.state === 'open') {
             const service = port.service[0].$;
-            const serviceProduct = service.product.split(" ")[0] || 'N/A';
-            const serviceVersion = service.version.split(" ")[0] || 'N/A';
+            const serviceProduct = service.product?.split(" ")[0] || 'N/A';
+            const serviceVersion = service.version?.split(" ")[0] || 'N/A';
 
             output += `${serviceProduct} ${serviceVersion}\n`;
         }

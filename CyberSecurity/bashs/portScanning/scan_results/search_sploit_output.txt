@@ -1,22 +1,34 @@
-[*] Searching for vulnerabilities in OpenSSH 6.6.1p1...
+[*] Searching for vulnerabilities in ProFTPD 1.3.5...
+----------------------------------- --------------------------------------------
+ Exploit Title                     |  URL
+----------------------------------- --------------------------------------------
+[01;31m[KProFTPd[m[K [01;31m[K1.3.5[m[K - 'mod_copy' Command | https://www.exploit-db.com/exploits/37262
+[01;31m[KProFTPd[m[K [01;31m[K1.3.5[m[K - 'mod_copy' Remote  | https://www.exploit-db.com/exploits/36803
+[01;31m[KProFTPd[m[K [01;31m[K1.3.5[m[K - 'mod_copy' Remote  | https://www.exploit-db.com/exploits/49908
+[01;31m[KProFTPd[m[K [01;31m[K1.3.5[m[K - File Copy          | https://www.exploit-db.com/exploits/36742
+----------------------------------- --------------------------------------------
+Shellcodes: No Results
+[*] Searching for vulnerabilities in OpenSSH 7.2p2...
 ----------------------------------- --------------------------------------------
  Exploit Title                     |  URL
 ----------------------------------- --------------------------------------------
 [01;31m[KOpenSSH[m[K 2.3 < 7.7 - Username Enume | https://www.exploit-db.com/exploits/45210
 [01;31m[KOpenSSH[m[K 2.3 < 7.7 - Username Enume | https://www.exploit-db.com/exploits/45233
+[01;31m[KOpenSSH[m[K 7.2 - Denial of Service    | https://www.exploit-db.com/exploits/40888
+[01;31m[KOpenSSH[m[K [01;31m[K7.2p2[m[K - Username Enumerati | https://www.exploit-db.com/exploits/40136
 [01;31m[KOpenSSH[m[K < 7.4 - 'UsePrivilegeSepar | https://www.exploit-db.com/exploits/40962
 [01;31m[KOpenSSH[m[K < 7.4 - agent Protocol Arb | https://www.exploit-db.com/exploits/40963
 [01;31m[KOpenSSH[m[K < 7.7 - User Enumeration ( | https://www.exploit-db.com/exploits/45939
+[01;31m[KOpenSSH[m[Kd [01;31m[K7.2p2[m[K - Username Enumerat | https://www.exploit-db.com/exploits/40113
 ----------------------------------- --------------------------------------------
 Shellcodes: No Results
-[*] Searching for vulnerabilities in Apache 2.4.7...
+[*] Searching for vulnerabilities in Apache 2.4.18...
 ----------------------------------- --------------------------------------------
  Exploit Title                     |  URL
 ----------------------------------- --------------------------------------------
 [01;31m[KApache[m[K + PHP < 5.3.12 / < 5.4.2 -  | https://www.exploit-db.com/exploits/29290
 [01;31m[KApache[m[K + PHP < 5.3.12 / < 5.4.2 -  | https://www.exploit-db.com/exploits/29316
-[01;31m[KApache[m[K [01;31m[K2.4.7[m[K + PHP 7.0.2 - 'openss | https://www.exploit-db.com/exploits/40142
-[01;31m[KApache[m[K [01;31m[K2.4.7[m[K mod_status - Scoreboa | https://www.exploit-db.com/exploits/34133
+[01;31m[KApache[m[K 2.4.17 < 2.4.38 - '[01;31m[Kapache[m[K2c | https://www.exploit-db.com/exploits/46676
 [01;31m[KApache[m[K < 2.2.34 / < 2.4.27 - OPTIO | https://www.exploit-db.com/exploits/42745
 [01;31m[KApache[m[K CXF < 2.5.10/2.6.7/2.7.4 -  | https://www.exploit-db.com/exploits/26710
 [01;31m[KApache[m[K mod_ssl < 2.8.7 OpenSSL - ' | https://www.exploit-db.com/exploits/21671
@@ -30,5 +42,24 @@ Shellcodes: No Results
 [01;31m[KApache[m[K Tomcat < 9.0.1 (Beta) / < 8 | https://www.exploit-db.com/exploits/42966
 [01;31m[KApache[m[K Xerces-C XML Parser < 3.1.2 | https://www.exploit-db.com/exploits/36906
 Webfroot Shoutbox < 2.32 ([01;31m[KApache[m[K)  | https://www.exploit-db.com/exploits/34
+----------------------------------- --------------------------------------------
+Shellcodes: No Results
+[*] Searching for vulnerabilities in N/A 2-4...
+Exploits: No Results
+Shellcodes: No Results
+[*] Searching for vulnerabilities in Samba 3.X...
+----------------------------------- --------------------------------------------
+ Exploit Title                     |  URL
+----------------------------------- --------------------------------------------
+[01;31m[KSamba[m[K < 3.0.20 - Remote Heap Overf | https://www.exploit-db.com/exploits/7701
+[01;31m[KSamba[m[K < 3.6.2 (x86) - Denial of Se | https://www.exploit-db.com/exploits/36741
+----------------------------------- --------------------------------------------
+Shellcodes: No Results
+[*] Searching for vulnerabilities in Samba 3.X...
+----------------------------------- --------------------------------------------
+ Exploit Title                     |  URL
+----------------------------------- --------------------------------------------
+[01;31m[KSamba[m[K < 3.0.20 - Remote Heap Overf | https://www.exploit-db.com/exploits/7701
+[01;31m[KSamba[m[K < 3.6.2 (x86) - Denial of Se | https://www.exploit-db.com/exploits/36741
 ----------------------------------- --------------------------------------------
 Shellcodes: No Results
