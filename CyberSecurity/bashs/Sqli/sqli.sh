@@ -10,6 +10,7 @@ RESET='\033[0m'
 # Define the temporary files for SQLmap and terminal output
 sqlmap_output_file="sqlmap_output.log"
 terminal_output_file="terminal_output.log"
+REAL_DIR="./bashs/Sqli"
 # Ensure the temporary files are empty at the start
 > "$sqlmap_output_file"
 > "$terminal_output_file"
@@ -150,6 +151,7 @@ fi
 
 # Notify the user that the output has been saved
 #log "${CYAN}Terminal output saved to $final_output_file${RESET}"  # deleted for Security puposes ;)
-
+# Clean the report 
+./"$REAL_DIR/clean_report.sh" 
 # Move the terminal output to the final output file
 mv "$terminal_output_file" "$final_output_file/sqli.txt"
