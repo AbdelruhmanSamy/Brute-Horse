@@ -10,7 +10,6 @@ RESET='\033[0m'
 # Define the temporary files for SQLmap and terminal output
 sqlmap_output_file="sqlmap_output.log"
 terminal_output_file="terminal_output.log"
-
 # Ensure the temporary files are empty at the start
 > "$sqlmap_output_file"
 > "$terminal_output_file"
@@ -29,7 +28,7 @@ fi
 
 # Function to show usage
 usage() {
-    log "${CYAN}Usage: $0 -u URL [-p PARAM] [-D DATABASE] [-T TABLE] [-C COLUMN] [OPTIONS]${RESET}"
+    log "${CYAN}Usage: $0 -u URL [-p PARAM] [-D DATABASE] [-T TABLE] [-C COLUMN] [OPTIONS] [FINAL_OUTPUT_FILE]${RESET}"
     log ""
     log "Options:"
     log "  -u URL        Target URL"
@@ -38,10 +37,12 @@ usage() {
     log "  -T TABLE      Specify table name (optional)"
     log "  -C COLUMN     Specify column name (optional)"
     log "  --options     Additional sqlmap options (optional)"
+    log "  FINAL_OUTPUT_FILE   Path to the final output file (optional)"
     exit 1
 }
 
 # Parse command-line arguments
+final_output_file="terminal_output.txt"  # Default output file name
 while [[ "$#" -gt 0 ]]; do
     case $1 in
         -u|--url) url="$2"; shift ;;
@@ -50,7 +51,14 @@ while [[ "$#" -gt 0 ]]; do
         -T|--table) table="$2"; shift ;;
         -C|--column) column="$2"; shift ;;
         --options) options="$2"; shift ;;
-        *) log "${RED}Unknown parameter passed: $1${RESET}"; usage ;;
+        *) 
+            if [ -z "$final_output_file_specified" ]; then
+                final_output_file="$1"
+                final_output_file_specified=true
+            else
+                log "${RED}Unknown parameter passed: $1${RESET}"; usage
+            fi
+            ;;
     esac
     shift
 done
@@ -141,7 +149,7 @@ if [[ "$options" == *dump* ]]; then
 fi
 
 # Notify the user that the output has been saved
-log "${CYAN}Terminal output saved to $terminal_output_file${RESET}"
+#log "${CYAN}Terminal output saved to $final_output_file${RESET}"  # deleted for Security puposes ;)
 
 # Move the terminal output to the final output file
-mv "$terminal_output_file" "$final_output_file"
+mv "$terminal_output_file" "$final_output_file/sqli.txt"
