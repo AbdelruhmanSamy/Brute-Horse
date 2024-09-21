@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Input file
-input_file="./scan_results/scan_report.txt"
+input_file="./scan_results/portScanning.txt"
 
 # Output cleaned file
-output_file="./scan_results/final_scan_report.txt"
+output_file="./scan_results/final_portScanning.txt"
 
 # Clean up ANSI escape sequences (used for colors in Gobuster and Searchsploit)
 sed -E 's/\x1B\[[0-9;]*[JKmsu]//g' "$input_file" > "$output_file"

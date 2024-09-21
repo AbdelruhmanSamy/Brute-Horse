@@ -1,0 +1,6 @@
+[*] Searching for vulnerabilities for service: OpenSSH 6.6.1p1
+No vulnerabilities found for OpenSSH 6.6.1p1 in NIST DB
+
+[*] Searching for vulnerabilities for service: Apache 2.4.7
+No vulnerabilities found for Apache 2.4.7 in NIST DB
+

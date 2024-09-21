@@ -21,21 +21,22 @@ for i in "${!args[@]}"; do
 done
 
 if [ "${#args[@]}" -lt 2 ]; then
-    echo "Usage: $0 <IP_ADDRESS> [TIME_SPEED] [SCAN_TYPE] [START_PORT] [END_PORT]"
+    echo "Usage: $0 <IP_ADDRESS> [TIME_SPEED] [OUTPUT_DIR] [SCAN_TYPE] [START_PORT] [END_PORT]"
     exit 1
 fi
 
 IP_ADDRESS=${args[0]}
 TIME_SPEED=${args[1]}
-SCAN_TYPE=${args[2]:-sS}
-START_PORT=${args[3]:-1}
-END_PORT=${args[4]:-1000}
+OUTPUT_DIR=${args[2]}
+SCAN_TYPE=${args[3]:-sS}
+START_PORT=${args[4]:-1}
+END_PORT=${args[5]:-1000}
+REAL_DIR="./bashs/portScanning"
+REPORT_FILE="./scan_results/portScanning.txt"
+cd "$REAL_DIR"
 
-OUTPUT_DIR="scan_results"
-REPORT_FILE="$OUTPUT_DIR/scan_report.txt"
-
-sudo rm -r $OUTPUT_DIR
-mkdir $OUTPUT_DIR
+sudo rm -r scan_results
+sudo mkdir scan_results
 
 # Create a readable report header
 echo "### Penetration Test Report for $IP_ADDRESS ###" > "$REPORT_FILE"
@@ -74,3 +75,7 @@ echo "Results saved in $REPORT_FILE"
 
 # Step 7: Cleaning Report from Non-alphanumeric characters
 sudo ./clean_report.sh
+
+#Step 8 : COPYING The finalreport to the location
+# sudo rm -r $OUTPUT_DIR
+mv ./scan_results/portScanning.txt "$OUTPUT_DIR"

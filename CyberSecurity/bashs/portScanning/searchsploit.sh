@@ -4,7 +4,7 @@
 OUTPUT_DIR="scan_results"
 INPUT_FILE="$OUTPUT_DIR/servicesOutput.txt"
 SEARCHSPLIT_OUTPUT="$OUTPUT_DIR/search_sploit_output.txt"
-REPORT_FILE="$OUTPUT_DIR/scan_report.txt"
+REPORT_FILE="$OUTPUT_DIR/portScanning.txt"
 
 > "$SEARCHSPLIT_OUTPUT"
 

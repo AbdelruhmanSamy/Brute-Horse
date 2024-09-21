@@ -4,7 +4,7 @@
 IP_ADDRESS=$1
 OUTPUT_DIR="scan_results"
 PORTS_FILE="$OUTPUT_DIR/portsOutput.txt"  
-REPORT_FILE="$OUTPUT_DIR/scan_report.txt"
+REPORT_FILE="$OUTPUT_DIR/portScanning.txt"
 
 # Ensure the ports file exists
 if [ ! -f "$PORTS_FILE" ]; then
