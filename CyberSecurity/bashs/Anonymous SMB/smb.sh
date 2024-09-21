@@ -55,7 +55,7 @@ case $CHOICE in
     echo "Starting password breaking for username $username on SMB..."
 
     # Using Hydra for brute-forcing passwords with a known username on SMB
-    hydra -l $username -P $WORDLIST SMB://$IP_ADDRESS -vV | grep -i "host" >  $TEXT_OUTPUT
+    hydra -l $username -P $WORDLIST smb://$IP_ADDRESS -vV | grep -i "host" >  $TEXT_OUTPUT
     ;;
 
   3)
