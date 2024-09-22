@@ -1,0 +1,28 @@
+        ___
+       __H__
+ ___ ___[,]_____ ___ ___  {1.7.11#stable}
+|_ -| . [.]     | .'| . |
+|___|_  [.]_|_|_|__,|  _|
+      |_|V...       |_|   https://sqlmap.org
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 09:45:56 /2024-09-22/
+
+[?1049h[22;0;0t[1;24r(B[m[4l[?7h[24;1H[?1049l[23;0;0t[?1l>[1/1] URL:
+GET https://0afc001503457b6f8015533900af0035.web-security-academy.net/filter?category=Corporate+gifts
+POST data: 1
+do you want to test this URL? [Y/n/q]
+> Y
+[09:45:56] [INFO] testing URL 'https://0afc001503457b6f8015533900af0035.web-security-academy.net/filter?category=Corporate+gifts'
+[09:45:56] [INFO] resuming back-end DBMS 'oracle' 
+[09:45:56] [INFO] using '/home/a7med/.local/share/sqlmap/output/results-09222024_0945am.csv' as the CSV results file in multiple targets mode
+[09:45:56] [INFO] testing connection to the target URL
+[09:45:57] [CRITICAL] page not found (404)
+[09:45:57] [WARNING] HTTP error codes detected during run:
+404 (Not Found) - 1 times
+[09:45:57] [INFO] you can find results of scanning in multiple targets mode inside the CSV file '/home/a7med/.local/share/sqlmap/output/results-09222024_0945am.csv'
+[09:45:57] [WARNING] your sqlmap version is outdated
+
+[*] ending @ 09:45:57 /2024-09-22/
+
