@@ -4,7 +4,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 const handleSubmit = async (data: any, setError: any) => {
     const headers = {"Content-Type": "application/json"};
-    const path = '/api/formSubmit'; //TODO: change this
+    const BASEURL = "http://localhost:3000/" //TODO: checkThis 
+    const path = BASEURL +'scan'; 
     const toastId = toast.loading("submitting form, please wait", {autoClose: false, isLoading: true});
 
     try {
