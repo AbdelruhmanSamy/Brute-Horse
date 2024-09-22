@@ -1,6 +1,8 @@
-const express=require("express")
+const express= require("express")
+const cors  = require("cors")
 const app=express()
 const vulnerabilityRouters=require("./router/vulnerabilityRouter")
+app.use(cors());
 app.use(express.json())
 app.use("/vulnerability",vulnerabilityRouters)
 app.listen(3000, () => {
