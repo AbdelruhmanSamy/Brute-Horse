@@ -31,7 +31,7 @@ case $CHOICE in
     echo "Attempting anonymous SMB login to $IP_ADDRESS..."
 
     # Using smbclient to attempt anonymous login
-    smbclient -L \\$IP_ADDRESS -N > $TEXT_OUTPUT
+    smbclient -L \\"$IP_ADDRESS" -N > $TEXT_OUTPUT
 
     # Check if the login was successful by searching the output
     if grep -q "Anonymous login successful" $TEXT_OUTPUT || grep -q "NT_STATUS_OK" $TEXT_OUTPUT; then

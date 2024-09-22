@@ -1,7 +1,7 @@
 #!/bin/bash
 #nvd.sh
 
-OUTPUT_DIR="scan_results"
+OUTPUT_DIR="./scan_results"
 INPUT_FILE="$OUTPUT_DIR/servicesOutput.txt"
 NVD_OUTPUT="$OUTPUT_DIR/nvd_output.txt"
 REPORT_FILE="$OUTPUT_DIR/portScanning.txt"

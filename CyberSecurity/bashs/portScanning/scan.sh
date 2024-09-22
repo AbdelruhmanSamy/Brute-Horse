@@ -31,9 +31,9 @@ OUTPUT_DIR=${args[2]}
 SCAN_TYPE=${args[3]:-sS}
 START_PORT=${args[4]:-1}
 END_PORT=${args[5]:-1000}
-REAL_DIR="./bashs/portScanning"
+REAL_DIR="bashs/portScanning"
 REPORT_FILE="./scan_results/portScanning.txt"
-cd "$REAL_DIR"
+cd ../"$REAL_DIR"
 
 sudo rm -r scan_results
 sudo mkdir scan_results

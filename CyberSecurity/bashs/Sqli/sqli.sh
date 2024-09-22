@@ -10,7 +10,7 @@ RESET='\033[0m'
 # Define the temporary files for SQLmap and terminal output
 sqlmap_output_file="sqlmap_output.log"
 terminal_output_file="terminal_output.log"
-REAL_DIR="./bashs/Sqli"
+REAL_DIR="../bashs/Sqli"
 # Ensure the temporary files are empty at the start
 > "$sqlmap_output_file"
 > "$terminal_output_file"

@@ -2,7 +2,7 @@
 #gobuster.sh
 
 IP_ADDRESS=$1
-OUTPUT_DIR="scan_results"
+OUTPUT_DIR="./scan_results"
 PORTS_FILE="$OUTPUT_DIR/portsOutput.txt"  
 REPORT_FILE="$OUTPUT_DIR/portScanning.txt"
 

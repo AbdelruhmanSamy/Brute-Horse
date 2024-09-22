@@ -1,0 +1,4 @@
+Anonymous SMB login to 10.10.251.138 failed.
+The operation could not be completed successfully. Please check the following:
+    - Ensure the target IP address is indeed an SMB server.
+    - Confirm that the SMB server allows anonymous login if that was the chosen method.

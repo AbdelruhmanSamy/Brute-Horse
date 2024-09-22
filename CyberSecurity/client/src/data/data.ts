@@ -127,28 +127,28 @@ const nmapSection = {
                 options:[
                     {
                         id:"1",
-                        label:"Ping Scan",
-                        value:"-sn"
+                        label:"SYN Scan",
+                        value:"-sS"
                     },
                     {
                         id:"2",
                         label:"TCP Scan",
-                        value:"-PS"
+                        value:"-sT"
                     },
                     {
                         id:"3",
-                        label:"syn/Ack Scan",
-                        value:"-PA"
+                        label:"NULL Scan",
+                        value:"-sN"
                     },
                     {
                         id:"4",
                         label:"UDP Scan",
-                        value:"-PU"
+                        value:"-sU"
                     },
                     {
                         id:"5",
-                        label:"ICMP Scan",
-                        value:"-PE"
+                        label:"Xmas Scan",
+                        value:"-sX"
                     },
                 ]
             }as RadioInputInterface
