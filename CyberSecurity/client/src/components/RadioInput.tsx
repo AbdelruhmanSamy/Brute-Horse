@@ -7,7 +7,7 @@ interface Props {
     enable: boolean
 }     
 
-function RadioInput({data, enable,  register , errors}:Props) {
+function RadioInput({data, enable,  register}:Props) {
 
     const {title , options} = data
     return (

@@ -4,7 +4,6 @@ import {
   MenuItem,
   FormControlLabel,
   Checkbox,
-  colors,
 } from "@mui/material";
 import {
   InputInterface,
@@ -15,7 +14,6 @@ import {
   CheckBoxInterface,
 } from "../types/types";
 import { Controller } from "react-hook-form";
-import { act } from "react";
 
 interface Props {
   input: InputInterface;

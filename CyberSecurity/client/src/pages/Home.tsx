@@ -1,5 +1,3 @@
-import React from 'react'
-import bg from "../assets/csBg.jpg"
 import logo from "../assets/logo.png"
 import { Link } from 'react-router-dom'
 

@@ -1,0 +1,6 @@
+ProFTPD 1.3.5
+OpenSSH 7.2p2
+Apache 2.4.18
+N/A 2-4
+Samba 3.X
+Samba 3.X

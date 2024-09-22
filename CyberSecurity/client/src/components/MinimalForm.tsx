@@ -59,7 +59,7 @@ function MinimalForm({sections}: MinimalFormProps) {
 
     const submit = async (data: any) => {
         console.log(data)
-        // await handleSubmit({...data}, setError);
+        await handleSubmit({...data}, setError);
     }
 
 

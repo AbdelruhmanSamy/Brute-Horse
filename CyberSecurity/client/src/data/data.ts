@@ -1,4 +1,4 @@
-import { FormInterface, InputTypes , TextInputInterface , SelectInputInterface , RadioInputInterface, CheckBoxInterface } from "../types/types";
+import { FormInterface, InputTypes , TextInputInterface , RadioInputInterface, CheckBoxInterface } from "../types/types";
 
 
 const ftpSection = {

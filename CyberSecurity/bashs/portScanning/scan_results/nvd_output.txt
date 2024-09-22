@@ -1,0 +1,216 @@
+[*] Searching for vulnerabilities for service: ProFTPD 1.3.5
+VulnID:CVE-2019-12815
+Description: An arbitrary file copy vulnerability in mod_copy in ProFTPD up to 1.3.5b allows for remote code execution and information disclosure without authentication, a related issue to CVE-2015-3306.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2019-12815
+
+VulnID:CVE-2017-7418
+Description: ProFTPD before 1.3.5e and 1.3.6 before 1.3.6rc5 controls whether the home directory of a user could contain a symbolic link through the AllowChrootSymlinks configuration option, but checks only the last path component when enforcing AllowChrootSymlinks. Attackers with local access could bypass the AllowChrootSymlinks control by replacing a path component (other than the last one) with a symbolic link. The threat model includes an attacker who is not granted full filesystem access by a hosting provider, but can reconfigure the home directory of an FTP user.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2017-7418
+
+VulnID:CVE-2016-3125
+Description: The mod_tls module in ProFTPD before 1.3.5b and 1.3.6 before 1.3.6rc2 does not properly handle the TLSDHParamFile directive, which might cause a weaker than intended Diffie-Hellman (DH) key to be used and consequently allow attackers to have unspecified impact via unknown vectors.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2016-3125
+
+VulnID:CVE-2015-3306
+Description: The mod_copy module in ProFTPD 1.3.5 allows remote attackers to read and write to arbitrary files via the site cpfr and site cpto commands.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2015-3306
+
+VulnID:CVE-2013-4359
+Description: Integer overflow in kbdint.c in mod_sftp in ProFTPD 1.3.4d and 1.3.5r3 allows remote attackers to cause a denial of service (memory consumption) via a large response count value in an authentication request, which triggers a large memory allocation.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2013-4359
+
+VulnID:CVE-2012-6095
+Description: ProFTPD before 1.3.5rc1, when using the UserOwner directive, allows local users to modify the ownership of arbitrary files via a race condition and a symlink attack on the (1) MKD or (2) XMKD commands.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2012-6095
+
+[*] Searching for vulnerabilities for service: OpenSSH 7.2p2
+VulnID:CVE-2015-8325
+Description: The do_setup_env function in session.c in sshd in OpenSSH through 7.2p2, when the UseLogin feature is enabled and PAM is configured to read .pam_environment files in user home directories, allows local users to gain privileges by triggering a crafted environment for the /bin/login program, as demonstrated by an LD_PRELOAD environment variable.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2015-8325
+
+VulnID:CVE-2016-3115
+Description: Multiple CRLF injection vulnerabilities in session.c in sshd in OpenSSH before 7.2p2 allow remote authenticated users to bypass intended shell-command restrictions via crafted X11 forwarding data, related to the (1) do_authenticated1 and (2) session_x11_req functions.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2016-3115
+
+[*] Searching for vulnerabilities for service: Apache 2.4.18
+VulnID:CVE-2019-10082
+Description: In Apache HTTP Server 2.4.18-2.4.39, using fuzzed network input, the http/2 session handling could be made to read memory after being freed, during connection shutdown.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2019-10082
+
+VulnID:CVE-2018-1333
+Description: By specially crafting HTTP/2 requests, workers would be allocated 60 seconds longer than necessary, leading to worker exhaustion and a denial of service. Fixed in Apache HTTP Server 2.4.34 (Affected 2.4.18-2.4.30,2.4.33).
+Link: https://nvd.nist.gov/vuln/detail/CVE-2018-1333
+
+VulnID:CVE-2016-4979
+Description: The Apache HTTP Server 2.4.18 through 2.4.20, when mod_http2 and mod_ssl are enabled, does not properly recognize the &quot;SSLVerifyClient require&quot; directive for HTTP/2 request authorization, which allows remote attackers to bypass intended access restrictions by leveraging the ability to send multiple requests over a single connection and aborting a renegotiation.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2016-4979
+
+VulnID:CVE-2016-1546
+Description: The Apache HTTP Server 2.4.17 and 2.4.18, when mod_http2 is enabled, does not limit the number of simultaneous stream workers for a single HTTP/2 connection, which allows remote attackers to cause a denial of service (stream-processing outage) via modified flow-control windows.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2016-1546
+
+[*] Searching for vulnerabilities for service: N/A 2-4
+No vulnerabilities found for N/A 2-4 in NIST DB
+
+[*] Searching for vulnerabilities for service: Samba 3.X
+VulnID:CVE-2016-2115
+Description: Samba 3.x and 4.x before 4.2.11, 4.3.x before 4.3.8, and 4.4.x before 4.4.2 does not require SMB signing within a DCERPC session over ncacn_np, which allows man-in-the-middle attackers to spoof SMB clients by modifying the client-server data stream.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2016-2115
+
+VulnID:CVE-2016-2112
+Description: The bundled LDAP client library in Samba 3.x and 4.x before 4.2.11, 4.3.x before 4.3.8, and 4.4.x before 4.4.2 does not recognize the &quot;client ldap sasl wrapping&quot; setting, which allows man-in-the-middle attackers to perform LDAP protocol-downgrade attacks by modifying the client-server data stream.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2016-2112
+
+VulnID:CVE-2016-2111
+Description: The NETLOGON service in Samba 3.x and 4.x before 4.2.11, 4.3.x before 4.3.8, and 4.4.x before 4.4.2, when a domain controller is configured, allows remote attackers to spoof the computer name of a secure channel&#39;s endpoint, and obtain sensitive session information, by running a crafted application and leveraging the ability to sniff network traffic, a related issue to CVE-2015-0005.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2016-2111
+
+VulnID:CVE-2016-2110
+Description: The NTLMSSP authentication implementation in Samba 3.x and 4.x before 4.2.11, 4.3.x before 4.3.8, and 4.4.x before 4.4.2 allows man-in-the-middle attackers to perform protocol-downgrade attacks by modifying the client-server data stream to remove application-layer flags or encryption settings, as demonstrated by clearing the NTLMSSP_NEGOTIATE_SEAL or NTLMSSP_NEGOTIATE_SIGN option to disrupt LDAP security.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2016-2110
+
+VulnID:CVE-2015-5370
+Description: Samba 3.x and 4.x before 4.2.11, 4.3.x before 4.3.8, and 4.4.x before 4.4.2 does not properly implement the DCE-RPC layer, which allows remote attackers to perform protocol-downgrade attacks, cause a denial of service (application crash or CPU consumption), or possibly execute arbitrary code on a client system via unspecified vectors.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2015-5370
+
+VulnID:CVE-2016-2118
+Description: The MS-SAMR and MS-LSAD protocol implementations in Samba 3.x and 4.x before 4.2.11, 4.3.x before 4.3.8, and 4.4.x before 4.4.2 mishandle DCERPC connections, which allows man-in-the-middle attackers to perform protocol-downgrade attacks and impersonate users by modifying the client-server data stream, aka &quot;BADLOCK.&quot;
+Link: https://nvd.nist.gov/vuln/detail/CVE-2016-2118
+
+VulnID:CVE-2015-7560
+Description: The SMB1 implementation in smbd in Samba 3.x and 4.x before 4.1.23, 4.2.x before 4.2.9, 4.3.x before 4.3.6, and 4.4.x before 4.4.0rc4 allows remote authenticated users to modify arbitrary ACLs by using a UNIX SMB1 call to create a symlink, and then using a non-UNIX SMB1 call to write to the ACL content.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2015-7560
+
+VulnID:CVE-2015-5299
+Description: The shadow_copy2_get_shadow_copy_data function in modules/vfs_shadow_copy2.c in Samba 3.x and 4.x before 4.1.22, 4.2.x before 4.2.7, and 4.3.x before 4.3.3 does not verify that the DIRECTORY_LIST access right has been granted, which allows remote attackers to access snapshots by visiting a shadow copy directory.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2015-5299
+
+VulnID:CVE-2015-5296
+Description: Samba 3.x and 4.x before 4.1.22, 4.2.x before 4.2.7, and 4.3.x before 4.3.3 supports connections that are encrypted but unsigned, which allows man-in-the-middle attackers to conduct encrypted-to-unencrypted downgrade attacks by modifying the client-server data stream, related to clidfs.c, libsmb_server.c, and smbXcli_base.c.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2015-5296
+
+VulnID:CVE-2015-5252
+Description: vfs.c in smbd in Samba 3.x and 4.x before 4.1.22, 4.2.x before 4.2.7, and 4.3.x before 4.3.3, when share names with certain substring relationships exist, allows remote attackers to bypass intended file-access restrictions via a symlink that points outside of a share.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2015-5252
+
+VulnID:CVE-2013-4496
+Description: Samba 3.x before 3.6.23, 4.0.x before 4.0.16, and 4.1.x before 4.1.6 does not enforce the password-guessing protection mechanism for all interfaces, which makes it easier for remote attackers to obtain access via brute-force ChangePasswordUser2 (1) SAMR or (2) RAP attempts.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2013-4496
+
+VulnID:CVE-2013-4408
+Description: Heap-based buffer overflow in the dcerpc_read_ncacn_packet_done function in librpc/rpc/dcerpc_util.c in winbindd in Samba 3.x before 3.6.22, 4.0.x before 4.0.13, and 4.1.x before 4.1.3 allows remote AD domain controllers to execute arbitrary code via an invalid fragment length in a DCE-RPC packet.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2013-4408
+
+VulnID:CVE-2013-4124
+Description: Integer overflow in the read_nttrans_ea_list function in nttrans.c in smbd in Samba 3.x before 3.5.22, 3.6.x before 3.6.17, and 4.x before 4.0.8 allows remote attackers to cause a denial of service (memory consumption) via a malformed packet.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2013-4124
+
+VulnID:CVE-2013-0214
+Description: Cross-site request forgery (CSRF) vulnerability in the Samba Web Administration Tool (SWAT) in Samba 3.x before 3.5.21, 3.6.x before 3.6.12, and 4.x before 4.0.2 allows remote attackers to hijack the authentication of arbitrary users by leveraging knowledge of a password and composing requests that perform SWAT actions.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2013-0214
+
+VulnID:CVE-2013-0213
+Description: The Samba Web Administration Tool (SWAT) in Samba 3.x before 3.5.21, 3.6.x before 3.6.12, and 4.x before 4.0.2 allows remote attackers to conduct clickjacking attacks via a (1) FRAME or (2) IFRAME element.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2013-0213
+
+VulnID:CVE-2012-1182
+Description: The RPC code generator in Samba 3.x before 3.4.16, 3.5.x before 3.5.14, and 3.6.x before 3.6.4 does not implement validation of an array length in a manner consistent with validation of array memory allocation, which allows remote attackers to execute arbitrary code via a crafted RPC call.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2012-1182
+
+VulnID:CVE-2011-2694
+Description: Cross-site scripting (XSS) vulnerability in the chg_passwd function in web/swat.c in the Samba Web Administration Tool (SWAT) in Samba 3.x before 3.5.10 allows remote authenticated administrators to inject arbitrary web script or HTML via the username parameter to the passwd program (aka the user field to the Change Password page).
+Link: https://nvd.nist.gov/vuln/detail/CVE-2011-2694
+
+VulnID:CVE-2011-2522
+Description: Multiple cross-site request forgery (CSRF) vulnerabilities in the Samba Web Administration Tool (SWAT) in Samba 3.x before 3.5.10 allow remote attackers to hijack the authentication of administrators for requests that (1) shut down daemons, (2) start daemons, (3) add shares, (4) remove shares, (5) add printers, (6) remove printers, (7) add user accounts, or (8) remove user accounts, as demonstrated by certain start, stop, and restart parameters to the status program.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2011-2522
+
+VulnID:CVE-2011-0719
+Description: Samba 3.x before 3.3.15, 3.4.x before 3.4.12, and 3.5.x before 3.5.7 does not perform range checks for file descriptors before use of the FD_SET macro, which allows remote attackers to cause a denial of service (stack memory corruption, and infinite loop or daemon crash) by opening a large number of files, related to (1) Winbind or (2) smbd.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2011-0719
+
+VulnID:CVE-2004-0186
+Description: smbmnt in Samba 2.x and 3.x on Linux 2.6, when installed setuid, allows local users to gain root privileges by mounting a Samba share that contains a setuid root program, whose setuid attributes are not cleared when the share is mounted.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2004-0186
+
+[*] Searching for vulnerabilities for service: Samba 3.X
+VulnID:CVE-2016-2115
+Description: Samba 3.x and 4.x before 4.2.11, 4.3.x before 4.3.8, and 4.4.x before 4.4.2 does not require SMB signing within a DCERPC session over ncacn_np, which allows man-in-the-middle attackers to spoof SMB clients by modifying the client-server data stream.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2016-2115
+
+VulnID:CVE-2016-2112
+Description: The bundled LDAP client library in Samba 3.x and 4.x before 4.2.11, 4.3.x before 4.3.8, and 4.4.x before 4.4.2 does not recognize the &quot;client ldap sasl wrapping&quot; setting, which allows man-in-the-middle attackers to perform LDAP protocol-downgrade attacks by modifying the client-server data stream.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2016-2112
+
+VulnID:CVE-2016-2111
+Description: The NETLOGON service in Samba 3.x and 4.x before 4.2.11, 4.3.x before 4.3.8, and 4.4.x before 4.4.2, when a domain controller is configured, allows remote attackers to spoof the computer name of a secure channel&#39;s endpoint, and obtain sensitive session information, by running a crafted application and leveraging the ability to sniff network traffic, a related issue to CVE-2015-0005.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2016-2111
+
+VulnID:CVE-2016-2110
+Description: The NTLMSSP authentication implementation in Samba 3.x and 4.x before 4.2.11, 4.3.x before 4.3.8, and 4.4.x before 4.4.2 allows man-in-the-middle attackers to perform protocol-downgrade attacks by modifying the client-server data stream to remove application-layer flags or encryption settings, as demonstrated by clearing the NTLMSSP_NEGOTIATE_SEAL or NTLMSSP_NEGOTIATE_SIGN option to disrupt LDAP security.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2016-2110
+
+VulnID:CVE-2015-5370
+Description: Samba 3.x and 4.x before 4.2.11, 4.3.x before 4.3.8, and 4.4.x before 4.4.2 does not properly implement the DCE-RPC layer, which allows remote attackers to perform protocol-downgrade attacks, cause a denial of service (application crash or CPU consumption), or possibly execute arbitrary code on a client system via unspecified vectors.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2015-5370
+
+VulnID:CVE-2016-2118
+Description: The MS-SAMR and MS-LSAD protocol implementations in Samba 3.x and 4.x before 4.2.11, 4.3.x before 4.3.8, and 4.4.x before 4.4.2 mishandle DCERPC connections, which allows man-in-the-middle attackers to perform protocol-downgrade attacks and impersonate users by modifying the client-server data stream, aka &quot;BADLOCK.&quot;
+Link: https://nvd.nist.gov/vuln/detail/CVE-2016-2118
+
+VulnID:CVE-2015-7560
+Description: The SMB1 implementation in smbd in Samba 3.x and 4.x before 4.1.23, 4.2.x before 4.2.9, 4.3.x before 4.3.6, and 4.4.x before 4.4.0rc4 allows remote authenticated users to modify arbitrary ACLs by using a UNIX SMB1 call to create a symlink, and then using a non-UNIX SMB1 call to write to the ACL content.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2015-7560
+
+VulnID:CVE-2015-5299
+Description: The shadow_copy2_get_shadow_copy_data function in modules/vfs_shadow_copy2.c in Samba 3.x and 4.x before 4.1.22, 4.2.x before 4.2.7, and 4.3.x before 4.3.3 does not verify that the DIRECTORY_LIST access right has been granted, which allows remote attackers to access snapshots by visiting a shadow copy directory.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2015-5299
+
+VulnID:CVE-2015-5296
+Description: Samba 3.x and 4.x before 4.1.22, 4.2.x before 4.2.7, and 4.3.x before 4.3.3 supports connections that are encrypted but unsigned, which allows man-in-the-middle attackers to conduct encrypted-to-unencrypted downgrade attacks by modifying the client-server data stream, related to clidfs.c, libsmb_server.c, and smbXcli_base.c.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2015-5296
+
+VulnID:CVE-2015-5252
+Description: vfs.c in smbd in Samba 3.x and 4.x before 4.1.22, 4.2.x before 4.2.7, and 4.3.x before 4.3.3, when share names with certain substring relationships exist, allows remote attackers to bypass intended file-access restrictions via a symlink that points outside of a share.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2015-5252
+
+VulnID:CVE-2013-4496
+Description: Samba 3.x before 3.6.23, 4.0.x before 4.0.16, and 4.1.x before 4.1.6 does not enforce the password-guessing protection mechanism for all interfaces, which makes it easier for remote attackers to obtain access via brute-force ChangePasswordUser2 (1) SAMR or (2) RAP attempts.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2013-4496
+
+VulnID:CVE-2013-4408
+Description: Heap-based buffer overflow in the dcerpc_read_ncacn_packet_done function in librpc/rpc/dcerpc_util.c in winbindd in Samba 3.x before 3.6.22, 4.0.x before 4.0.13, and 4.1.x before 4.1.3 allows remote AD domain controllers to execute arbitrary code via an invalid fragment length in a DCE-RPC packet.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2013-4408
+
+VulnID:CVE-2013-4124
+Description: Integer overflow in the read_nttrans_ea_list function in nttrans.c in smbd in Samba 3.x before 3.5.22, 3.6.x before 3.6.17, and 4.x before 4.0.8 allows remote attackers to cause a denial of service (memory consumption) via a malformed packet.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2013-4124
+
+VulnID:CVE-2013-0214
+Description: Cross-site request forgery (CSRF) vulnerability in the Samba Web Administration Tool (SWAT) in Samba 3.x before 3.5.21, 3.6.x before 3.6.12, and 4.x before 4.0.2 allows remote attackers to hijack the authentication of arbitrary users by leveraging knowledge of a password and composing requests that perform SWAT actions.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2013-0214
+
+VulnID:CVE-2013-0213
+Description: The Samba Web Administration Tool (SWAT) in Samba 3.x before 3.5.21, 3.6.x before 3.6.12, and 4.x before 4.0.2 allows remote attackers to conduct clickjacking attacks via a (1) FRAME or (2) IFRAME element.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2013-0213
+
+VulnID:CVE-2012-1182
+Description: The RPC code generator in Samba 3.x before 3.4.16, 3.5.x before 3.5.14, and 3.6.x before 3.6.4 does not implement validation of an array length in a manner consistent with validation of array memory allocation, which allows remote attackers to execute arbitrary code via a crafted RPC call.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2012-1182
+
+VulnID:CVE-2011-2694
+Description: Cross-site scripting (XSS) vulnerability in the chg_passwd function in web/swat.c in the Samba Web Administration Tool (SWAT) in Samba 3.x before 3.5.10 allows remote authenticated administrators to inject arbitrary web script or HTML via the username parameter to the passwd program (aka the user field to the Change Password page).
+Link: https://nvd.nist.gov/vuln/detail/CVE-2011-2694
+
+VulnID:CVE-2011-2522
+Description: Multiple cross-site request forgery (CSRF) vulnerabilities in the Samba Web Administration Tool (SWAT) in Samba 3.x before 3.5.10 allow remote attackers to hijack the authentication of administrators for requests that (1) shut down daemons, (2) start daemons, (3) add shares, (4) remove shares, (5) add printers, (6) remove printers, (7) add user accounts, or (8) remove user accounts, as demonstrated by certain start, stop, and restart parameters to the status program.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2011-2522
+
+VulnID:CVE-2011-0719
+Description: Samba 3.x before 3.3.15, 3.4.x before 3.4.12, and 3.5.x before 3.5.7 does not perform range checks for file descriptors before use of the FD_SET macro, which allows remote attackers to cause a denial of service (stack memory corruption, and infinite loop or daemon crash) by opening a large number of files, related to (1) Winbind or (2) smbd.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2011-0719
+
+VulnID:CVE-2004-0186
+Description: smbmnt in Samba 2.x and 3.x on Linux 2.6, when installed setuid, allows local users to gain root privileges by mounting a Samba share that contains a setuid root program, whose setuid attributes are not cleared when the share is mounted.
+Link: https://nvd.nist.gov/vuln/detail/CVE-2004-0186
+

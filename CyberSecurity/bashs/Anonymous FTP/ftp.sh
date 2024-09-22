@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Usage: ./ftp.sh <IP_ADDRESS> <CHOICE> [USERNAME]
+# Usage: ./ftp.sh <IP_ADDRESS> <CHOICE> <Location> [USERNAME]
 # <CHOICE> can be:
 # 1 - Anonymous login only
-# 2 - Password breaking (requires a username as the third parameter)
+# 2 - Password breaking (requires a username as the fourth parameter)
 # 3 - Username and password breaking (brute-force both)
 
 if [ -z "$1" ] || [ -z "$2" ]; then
@@ -13,10 +13,10 @@ if [ -z "$1" ] || [ -z "$2" ]; then
 fi
 
 # Variables
-OUTPUT_DIR="scan_results"
-TEXT_OUTPUT="$OUTPUT_DIR/ftp.txt"
 IP_ADDRESS=$1        # The IP address is the first argument
 CHOICE=$2            # The action choice (1, 2, or 3) is the second argument
+OUTPUT_DIR=$3
+TEXT_OUTPUT="$OUTPUT_DIR/ftp.txt"
 WORDLIST="/usr/share/wordlists/rockyou.txt"  # Path to the password wordlist file
 USERLIST="/usr/share/seclists/Usernames/top-usernames.txt"  # Common usernames from SecLists
 
@@ -37,32 +37,32 @@ EOF
 
     # Check if the login was successful by searching the output for "Login successful"
     if grep -q "Login successful" $TEXT_OUTPUT; then
-      echo "Anonymous FTP login to $IP_ADDRESS succeeded!"
+     echo "The anonymous FTP login to $IP_ADDRESS has been successfully established. You can now access the server anonymously and navigate its resources freely." > $TEXT_OUTPUT
     else
-      echo "Anonymous FTP login to $IP_ADDRESS failed."
+      echo "Anonymous FTP login to $IP_ADDRESS failed." > $TEXT_OUTPUT
+      echo "The operation could not be completed successfully. Please check the following:
+    - Ensure the target IP address is indeed an FTP server.
+    - Confirm that the FTP server allows anonymous login if that was the chosen method." >> $TEXT_OUTPUT
     fi
     ;;
 
   2)
     # Option 2: Password breaking for a specific username
-    if [ -z "$3" ]; then
+    if [ -z "$4" ]; then
       echo "Error: You must provide a username for password breaking in choice 2."
-      echo "Usage: $0 <IP_ADDRESS> 2 <USERNAME>"
       exit 1
     fi
-    username=$3
-    echo "Starting password breaking for username $username on FTP..."
+    username=$4
+    echo "Starting password breaking for username $username on FTP..." 
 
     # Using Hydra for brute-forcing passwords with a known username
-    hydra -l $username -P $WORDLIST ftp://$IP_ADDRESS -vV
+    hydra -l $username -P $WORDLIST ftp://$IP_ADDRESS -vV | grep -i "host" >  $TEXT_OUTPUT
     ;;
 
   3)
     # Option 3: Username and password brute-forcing
     echo "Starting username and password brute-forcing on FTP..."
-
-    # Using Hydra to brute-force both usernames and passwords
-    hydra -L $USERLIST -P $WORDLIST -f ftp://$IP_ADDRESS -vV
+    hydra -L $USERLIST -P $WORDLIST ftp://$IP_ADDRESS -vV | grep -i "host" > $TEXT_OUTPUT
     ;;
 
   *)
@@ -72,5 +72,9 @@ EOF
     ;;
 esac
 
-# Clean up by removing the scan result text file
-rm $TEXT_OUTPUT
+# Check if the result file is empty and remove it if no content is found
+if [ ! -s $TEXT_OUTPUT ]; then
+echo "The operation did not complete successfully. The result file is empty, indicating that no valid login is found " >  $TEXT_OUTPUT
+else
+  echo "Results found and saved in $TEXT_OUTPUT."
+fi
