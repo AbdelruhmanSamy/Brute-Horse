@@ -41,6 +41,12 @@ function isCheckBoxInputInterface(data: any): data is CheckBoxInterface {
   return (data as CheckBoxInterface).isChecked !== undefined;
 }
 
+const ErrorMessage = ({error}: { error: { message: string } }) => (
+  <div className="mt-[-12px]">
+      <span className="text-[red] text-sm">{error.message}</span>
+  </div>
+);
+
 function Input({
   input,
   watch,
@@ -51,11 +57,13 @@ function Input({
 }: Props) {
   const { required, type, data } = input;
 
-  const registerOptions = {
-    required: required ? "this field is required" : false,
+  let registerOptions = {
+    required: required && enable ? "this field is required" : false,
   };
 
   const regularGrey = "#CCC5C5";
+
+  let hasError;
 
   switch (true) {
     case isRadioInputInterface(data) && type == InputTypes.radio:
@@ -69,7 +77,10 @@ function Input({
       );
 
     case isSelectInputInterface(data) && type == InputTypes.select:
+      hasError = Boolean(errors[data.id])
+
       return (
+        <>
         <TextField
           color="warning"
           id="standard-select-currency"
@@ -88,6 +99,10 @@ function Input({
             </MenuItem>
           ))}
         </TextField>
+
+        {hasError && <ErrorMessage error={errors[data.id]}/>}
+        </>
+
       );
     case isTextInputInterface(data) &&
       (type == InputTypes.text || type == InputTypes.url):
@@ -95,7 +110,16 @@ function Input({
       const activate = data.dependentOn? data.dependentOn.reduce((accumulator, currentValue) => {
         return accumulator &&  watch(currentValue.key)=== currentValue.value;
       }, true):enable 
+
+      registerOptions = {
+        required: required && enable && activate ? "this field is required" : false,
+      };
+
+      hasError = Boolean(errors[data.name]);
+
+
       return (
+        <>
         <TextField
           {...register(data.name, registerOptions)}
           id="standard-basic"
@@ -126,14 +150,20 @@ function Input({
             },
           }}
         />
+        {hasError && <ErrorMessage error={errors[data.name]}/>}
+
+        </>
+        
       );
     case isCheckBoxInputInterface(data) && type === InputTypes.checkbox:
+      hasError = Boolean(errors[data.id])
       return (
+        <>
         <Controller
           name={data.id}
           control={control}
           defaultValue={data.isChecked}
-          rules={{ required: "You must agree to the terms" }}
+          rules={ required?{ required: "You must agree to the terms" }:{}}
           render={({ field }) => (
             <FormControlLabel
               control={
@@ -161,6 +191,9 @@ function Input({
             />
           )}
         />
+        {hasError && <ErrorMessage error={errors[data.id]}/>}
+        </>
+
       );
     default:
       throw Error("Undefined input type");
