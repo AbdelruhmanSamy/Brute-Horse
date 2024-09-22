@@ -4,19 +4,21 @@ import "react-toastify/dist/ReactToastify.css";
 
 const handleSubmit = async (data: any, setError: any) => {
     const headers = {"Content-Type": "application/json"};
-    const BASEURL = "http://localhost:3000/" //TODO: checkThis 
-    const path = BASEURL +'scan'; 
+    const BASEURL = "http://localhost:3000"  
+    const path = BASEURL +'/vulnerability/scan';     
     const toastId = toast.loading("submitting form, please wait", {autoClose: false, isLoading: true});
 
+    console.log(data)
     try {
         const response = await fetch(path, {
+            method: "POST",
             headers: headers,
-            method: "GET",
             body: JSON.stringify(data),
         })
 
+
         const result = await response.json();
-        console.log(result, "result")
+        console.log(result, "result")   
         if (result.status === 200) {
             toast.update(toastId, {
                 render: result.message,
@@ -40,6 +42,8 @@ const handleSubmit = async (data: any, setError: any) => {
             }
         }
     } catch (error: any) {
+        console.log("error", error)
+
         toast.update(toastId, {
             render: error.message,
             type: 'error',
