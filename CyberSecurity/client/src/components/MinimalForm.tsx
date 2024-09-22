@@ -23,7 +23,7 @@ function Section({section, watch, register, errors, control}:SectionProps){
     const {id , title , inputs} = section
 
     const checkboxInput:InputInterface = {
-        required: true,
+        required: false,
         type: InputTypes.checkbox,
         data:{
             id: id,
@@ -59,7 +59,7 @@ function MinimalForm({sections}: MinimalFormProps) {
 
     const submit = async (data: any) => {
         console.log(data)
-        await handleSubmit({...data}, setError);
+        // await handleSubmit({...data}, setError);
     }
 
 

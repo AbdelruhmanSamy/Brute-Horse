@@ -192,7 +192,7 @@ const nmapSection = {
         },
         
         {
-            required:true,
+            required:false,
             type: InputTypes.checkbox,
             data:{
                 id:"rangeScan",
