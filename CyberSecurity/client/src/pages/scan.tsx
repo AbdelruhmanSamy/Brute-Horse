@@ -1,19 +1,27 @@
-import FormContainer from '../components/FormContainer'
-import { formData } from '../data/data'
+import FormContainer from "../components/FormContainer";
+import { formData } from "../data/data";
+import logo from "../assets/logo.png";
 
 function Scan() {
-
-    return (    
-        <div 
-        className="
+  return (
+    <div
+      className="
         w-full
-        bg-gradient-to-r from-regular-blue from-60% via-light-blue via-80% to-regular-blue to-95%
+        bg-regular-blue 
         flex
+        flex-col
+        items-center
         justify-center
-        ">
-            <FormContainer {...formData}/>
+        pt-10
+        "
+    >
+        <div className="flex justify-center items-center">
+            <h1 className="font-header text-8xl text-regular-grey">BruteHorse</h1>
+            <img src={logo} className="w-60" />
         </div>
-    )
+      <FormContainer {...formData} />
+    </div>
+  );
 }
 
-export default Scan
+export default Scan;

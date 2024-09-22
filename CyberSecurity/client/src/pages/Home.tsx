@@ -14,7 +14,7 @@ function Home(props: Props) {
         bg-gradient-to-r from-regular-blue from-60% via-light-blue via-80% to-regular-blue to-95%
         relative
         ">
-            <img src={logo} className="w-85 absolute top-1/4 left-2/3" />
+             <img src={logo} className="w-85 absolute top-1/4 left-2/3" />
 
             <div className='pl-[5%] pt-[10%] text-regular-grey text-4xl font-body w-[50%] flex flex-col'>
                 <h1 className='font-header text-8xl'>BruteHorse</h1>
