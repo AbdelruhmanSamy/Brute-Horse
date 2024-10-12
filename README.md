@@ -28,7 +28,8 @@ An automation pentesting interface that allows the disclosure of vulnerabilities
 
 ## Hacking Tools
 1. `Sqlmap` for sql injection
-2. `nmap` for port scanning
+2. `nmap` for enumeration
+3. `wapiti` for port scanning
 
 ## Tech Stack
 1. `react` for UI
