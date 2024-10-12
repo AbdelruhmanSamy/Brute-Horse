@@ -26,9 +26,15 @@ An automation pentesting interface that allows the disclosure of vulnerabilities
 3. Exploitation 🔥
    1. SQLI for found forms & search bars
 
-## Used Tools
+## Hacking Tools
 1. `Sqlmap` for sql injection
 2. `nmap` for port scanning
+
+## Tech Stack
+1. `react` for UI
+2. `Tailwind` for styling
+3. `Typescript` as the language
+4. `react-hook-form` for form management
 
 ## Our Amazing Team
 
