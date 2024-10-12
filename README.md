@@ -26,6 +26,10 @@ An automation pentesting interface that allows the disclosure of vulnerabilities
 3. Exploitation 🔥
    1. SQLI for found forms & search bars
 
+## Used Tools
+1. `Sqlmap` for sql injection
+2. `nmap` for port scanning
+
 ## Our Amazing Team
 
 | <img src="https://avatars.githubusercontent.com/u/121282837?v=4" width="100px" alt="Abdelruhman"> | <img src="https://avatars.githubusercontent.com/u/111181298?v=4" width="100px" alt="Ashraf"> | <img src="https://avatars.githubusercontent.com/u/88963866?v=4" width="100px" alt="Ahmed"> | <img src="https://avatars.githubusercontent.com/u/128908402?v=4" width="100px" alt="Nesma"> |
